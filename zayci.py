@@ -7,7 +7,7 @@ from random import randint
 
 
 def convert_range(x, in_min, in_max, out_min, out_max):
-  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+    return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
 
 class TGrass:
@@ -74,6 +74,7 @@ class THare:
         if self.age >= self.bb.ReproductionHareAge and self.energy >= self.bb.minHareEnergyToReproduce:
             self.bb.hares.append(THare(self.bb.grass, self.x, self.y, self.bb))
             self.energy //= 2
+
 
 class BB:
     def __init__(self):
