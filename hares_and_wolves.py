@@ -5,6 +5,8 @@ from OpenGL.GLU import *
 from random import uniform
 from random import randint
 from random import gauss
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 
 class TGrass:
@@ -134,6 +136,13 @@ pygame.display.set_mode(display, DOUBLEBUF | OPENGL)
 gluPerspective(45, (display[0] / display[1]), 0.1, 50.0)
 glTranslatef(0.0, 0.0, -2.8)
 mb = BB()
+
+# fig = plt.figure()
+# ax = fig.add_subplot(1, 1, 1)
+#
+# def animate():
+#
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -142,6 +151,9 @@ while True:
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     mb.draw()
     mb.go()
+    file = open('for_plot_of_hares.txt', 'a')
+    file.write(f'{len(mb.hares)}')
+    file.close()
     print(len(mb.hares), sum([sum(i) for i in mb.grass.M]))
     pygame.display.flip()
     pygame.time.wait(100)
