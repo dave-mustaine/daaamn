@@ -76,7 +76,7 @@ class THare:
 
 class BB:
     def __init__(self):
-        self.n = 15
+        self.n = 25
         self.MaxGrassLength = 10
         self.NstarGrass = 100
         self.GrassPerStep = 10
@@ -137,13 +137,10 @@ gluPerspective(45, (display[0] / display[1]), 0.1, 50.0)
 glTranslatef(0.0, 0.0, -2.8)
 mb = BB()
 
-# fig = plt.figure()
-# ax = fig.add_subplot(1, 1, 1)
-#
-# def animate():
-#
+time = 0
+file = open('for_plot_of_hares.txt', 'w')
 
-while True:
+while time <= 200:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
@@ -152,8 +149,102 @@ while True:
     mb.draw()
     mb.go()
     file = open('for_plot_of_hares.txt', 'a')
-    file.write(f'{len(mb.hares)}')
+    file.write(f'{time} {len(mb.hares)} {sum([sum(i) for i in mb.grass.M])} \n')
     file.close()
-    print(len(mb.hares), sum([sum(i) for i in mb.grass.M]))
+    print(time, len(mb.hares), sum([sum(i) for i in mb.grass.M]))
     pygame.display.flip()
-    pygame.time.wait(100)
+    pygame.time.wait(10)
+    time += 1
+
+fig = plt.figure()
+
+step = 0
+
+# data = open('for_plot_of_hares.txt', 'r').read()
+# lines = data.split('\n')[:-1]
+# times = []
+# hares = []
+# grass = []
+#
+# for line in lines[:step]:
+#     time_, hare_, grass_ = line.split()
+#     times.append(time_)
+#     hares.append(hare_)
+#     grass.append(grass_)
+
+
+ax = fig.add_subplot(1, 1, 1)
+
+
+def animate_hares(i):
+    global step
+    # global step, lines, times, hares, line, time_, hare_, grass_
+
+    data = open('for_plot_of_hares.txt', 'r').read()
+    lines = data.split('\n')[:-1]
+    times = []
+    hares = []
+    grass = []
+
+    for line in lines[:step]:
+        time_, hare_, grass_ = line.split()
+        times.append(time_)
+        hares.append(hare_)
+        grass.append(grass_)
+
+    ax.clear()
+    ax.plot(times, hares, color='blue')
+    ax.plot(times, grass, color='green')
+    plt.xlabel('time')
+    plt.ylabel('hares, grass', color='blue')
+    plt.title('негры и еда')
+    step += 1
+
+
+ani_hr = animation.FuncAnimation(fig, animate_hares, interval=10)
+plt.show()
+
+# axx = fig.add_subplot(1, 2, 2)
+
+
+# def animate_grass(i):
+#     global step, lines, times, grass
+#
+#     ax.clear()
+#     ax.plot(times, grass, color='green')
+#     plt.xlabel('time')
+#     plt.ylabel('hares', color='green')
+#     plt.title('еда для негров')
+#     step += 1
+#
+#
+# ani_gr = animation.FuncAnimation(fig, animate_grass, interval=10)
+#
+
+# step = 0
+
+
+# def animate_wolves(i):
+#     global step
+#     data = open('for_plot_of_hares.txt', 'r').read()
+#     lines = data.split('\n')[:-1]
+#     times = []
+#     hares = []
+#     grass = []
+#
+#     for line in lines[:step]:
+#         time_, hare_, grass_ = line.split()
+#         times.append(time_)
+#         hares.append(hare_)
+#         grass.append(grass_)
+#
+#     ax.clear()
+#     ax.plot(times, hares, color='blue')
+#     plt.xlabel('time')
+#     plt.ylabel('hares', color='blue')
+#     plt.title('негры')
+#     step += 1
+#
+#
+# ani = animation.FuncAnimation(fig, animate_wolves, interval=10)
+# plt.show()
