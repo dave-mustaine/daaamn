@@ -2,12 +2,12 @@
 #
 # print(math.factorial(100))
 
-# import pymorphy2
+import pymorphy2
 # import re
 #
-# TEXT = open('true.txt', 'r', encoding='utf-8')
+TEXT = open('Понедельник_начинается_в_субботу.txt', 'r', encoding='utf-8')
 #
-# s = list(re.sub(r'[^\w\s]', '', TEXT.read()).lower().split())
+s = list(re.sub(r'[^\w\s]', '', TEXT.read()).lower().split())
 #
 # # for word in words:
 # #     word.lower()
@@ -19,13 +19,13 @@
 #
 # print(s)
 
-import random
-
-test_list = ["ff", "fF", "Ff", "Ff", "FF", "ff", "fF", "FF"]
-
-b, c = random.sample(test_list, 2)
-
-test_list.remove(b)
-test_list.remove(c)
-
-print(test_list)
+# import random
+#
+# test_list = ["ff", "fF", "Ff", "Ff", "FF", "ff", "fF", "FF"]
+#
+# b, c = random.sample(test_list, 2)
+#
+# test_list.remove(b)
+# test_list.remove(c)
+#
+# print(test_list)
