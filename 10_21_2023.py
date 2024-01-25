@@ -3,11 +3,12 @@
 # print(math.factorial(100))
 
 import pymorphy2
-# import re
+import re
 #
-TEXT = open('Понедельник_начинается_в_субботу.txt', 'r', encoding='utf-8')
+TEXT = open('Понедельник_начинается_в_субботу.docx', 'r', encoding='utf-8')
 #
-s = list(re.sub(r'[^\w\s]', '', TEXT.read()).lower().split())
+s = list(TEXT.read().lower().split())
+# a = filter()
 #
 # # for word in words:
 # #     word.lower()
